@@ -1,20 +1,23 @@
 {
-  "name": "debowerify",
+  "name": "essential-bundle",
   "version": "0.9.1",
-  "description": "A browserify transform to enable the easy use of bower components in browserify client javascript projects. This can be used in conjunction with deamdify to require AMD components from bower as well.",
+  "description": "Transform resources in your Web Component into a deliverable bundle. Use `names.json`, `bower.json` or `package.json` to define where your resources and assets are. Identify JS, CSS, images, fonts, views and templates.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eugeneware/debowerify"
+    "url": "https://github.com/essentialjs/essential-bundle"
   },
   "keywords": [
+    "browser",
+    "socketstream",
     "bower",
+    "bundles",
     "component",
     "components",
     "browserify",
     "transform"
   ],
-  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "author": "Henrik Vendelbo <henrik@thepia.com>",
   "license": "BSD",
   "dependencies": {
     "through": "~2.3.4",
@@ -22,8 +25,8 @@
     "bower": "~1.3.12"
   },
   "devDependencies": {
+    "socketstream": "~0.3.11",
     "domready": "~1.0.4",
-    "deamdify": "~0.1.1",
     "chai": "~1.9.0",
     "mocha": "~1.17.1",
     "browserify": "~3.32.0"

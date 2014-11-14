@@ -1,88 +1,71 @@
-# debowerify
+# essential-bundles
 
-A browserify transform to enable the easy use of [bower](https://bower.io) components in browserify client javascript projects.
+Transform resources in your Web Component into a deliverable bundle. Use `names.json`, `bower.json` or `package.json` to define where your resources and assets are. Identify JS, CSS, images, fonts, views and templates.
 
-This can be used in conjunction with [deamdify](https://github.com/jaredhanson/deamdify) to require AMD components from bower as well.
+With [Browserify](1) and [SocketStream](2) can access your bundle and serve it to the browser.
 
-NB: For more information about how to use debowerify to create stand-alone library bundles
-check out [bower-resolve](https://github.com/eugeneware/bower-resolve) and the 
-examples in the README.
+You can use modules of your own in combination with some added using [bower](https://bower.io). 
 
-[![build status](https://secure.travis-ci.org/eugeneware/debowerify.png)](http://travis-ci.org/eugeneware/debowerify)
+[![build status](https://secure.travis-ci.org/essentialjs/essential-bundle.png)](http://travis-ci.org/essentialjs/essential-bundle)
 
 ## Installation
 
 Installation is via npm:
 
 ```
-$ npm install debowerify
+$ npm install essential-bundle
 ```
 
 ## How to use.
 
-Install some bower components:
+By default directories in your project are supported as modules. So you can add,
 
 ```
-# creates files in components/screenfull/
-$ bower install screenfull
+users
++ js/
++ images/
++ fonts/
++ css/
++ views/
++ templates/
++ users.js
++ names.json
 ```
 
-Require the bower file by it's bower identifier (ie. in this case "screenfull"):
+Your `users.js` file would require the submodules inside `js/`.
 
-``` js
-// public/scripts/app.js
-var _screenfull = require('screenfull'); // the bower component
-var domready = require('domready'); // a regular browserify npm component
-
-domready(function () {
-  var button = document.getElementById('fullscreen');
-  button.addEventListener('click', function (evt) {
-    // screenfull adds itself to window.screenfull - but we can get to it
-    if (screenfull.enabled) {
-      screenfull.toggle(this);
-    }
-  });
-});
+``` users.js
+var uuid = require('uuid');
+exports.account = require('./js/account');
+exports.profile = require('./js/profile');
 ```
 
-Build out your browserify bundle using the debowerify transform:
+Make sure you fill in `main` in `names.json` (or `bower.json`/`package.json`) to be `users.js`.
 
-```
-$ browserify -t debowerify  public/scripts/app.js -o public/scripts/build/bundle.js
-```
+Add a where section to `names.json`.
 
-Then include your bundle.js in your HTML file and you're done!
-
-# How to use with AMD components
-
-If your bower components are amd and they don't support commonjs modules than simply use debowerify with the excellent [deamdify](https://github.com/jaredhanson/deamdify) browserify transform. For example, the following AMD bower import:
-
-```
-# creates files in components/myamdcomponent/
-$ bower install myamdcomponent
-```
-
-``` js
-// public/scripts/amdapp.js
-var myamdcomponent = require('myamdcomponent'); // the AMD bower component
-var domready = require('domready'); // a regular browserify npm component
-
-domready(function () {
-  // call the amd component
-  myamdcomponent.doStuff();
-});
+``` names.json
+{
+	"name":"users",
+	"main":"users.js",
+	"where": {
+		"js": "js/**/*.js",
+		"css": "css/**/*.less",
+		"views": "views/**/*.html",
+		"templates": "templates/**/*.html",
+		"assets": ["fonts","images"]
+	}
+}
 ```
 
-To make this all magically work and use the short-form bower name of "amdcomponent" chain both debowerify and deamdify together like this:
+In your application you can pull in the `users` code with `require("users")`. It will resolve to a module with a combination of js, views, templates.
 
-```
-$ browserify -t debowerify -t deamdify public/scripts/amdapp.js -o public/scripts/build/bundle.js
-```
-
-Too easy!
 
 # Notes
 
-The transform depends on the "main" entry in bower.json to be correct.
+This is based on great work from [debowerify](3) by [Eugene Ware](4)
 
-Some bower components may not have this set, or have it set incorrectly. In this case, either manually update the bower.json file yourself, of just do a require to the relevant full path of the bower javascript file - and then complain to the bower component repo owner! :-)
+[1](http://browserify.org)
+[2](http://socketstream.org)
+[3](http://github.com/eugeneware/debrowserfiy)
+[4](http://github.com/eugeneware)
