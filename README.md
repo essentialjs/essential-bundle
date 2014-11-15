@@ -65,7 +65,7 @@ In your application you can pull in the `users` code with `require("users")`. It
 
 This is based on great work from [debowerify][3] by [Eugene Ware][4]
 
-[1]: http://browserify.org
-[2]: http://socketstream.org
-[3]: http://github.com/eugeneware/debrowserfiy
-[4]: http://github.com/eugeneware
+[1]: http://browserify.org "Browserify"
+[2]: http://socketstream.org "Socketstream"
+[3]: http://github.com/eugeneware/debowerify "debowerify"
+[4]: http://github.com/eugeneware "Eugene Ware"
