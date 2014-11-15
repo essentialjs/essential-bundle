@@ -2,7 +2,7 @@
 
 Transform resources in your Web Component into a deliverable bundle. Use `names.json`, `bower.json` or `package.json` to define where your resources and assets are. Identify JS, CSS, images, fonts, views and templates.
 
-With [Browserify](1) and [SocketStream](2) can access your bundle and serve it to the browser.
+With [Browserify][1] and [SocketStream][2] can access your bundle and serve it to the browser.
 
 You can use modules of your own in combination with some added using [bower](https://bower.io). 
 
@@ -63,9 +63,9 @@ In your application you can pull in the `users` code with `require("users")`. It
 
 # Notes
 
-This is based on great work from [debowerify](3) by [Eugene Ware](4)
+This is based on great work from [debowerify][3] by [Eugene Ware][4]
 
-[1](http://browserify.org)
-[2](http://socketstream.org)
-[3](http://github.com/eugeneware/debrowserfiy)
-[4](http://github.com/eugeneware)
+[1]: http://browserify.org
+[2]: http://socketstream.org
+[3]: http://github.com/eugeneware/debrowserfiy
+[4]: http://github.com/eugeneware
