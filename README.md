@@ -16,6 +16,8 @@ Installation is via npm:
 $ npm install essential-bundle
 ```
 
+[![NPM](https://nodei.co/npm/essential-bundle.png)](https://nodei.co/npm/essential-bundle/)
+
 ## How to use.
 
 By default directories in your project are supported as modules. So you can add,
