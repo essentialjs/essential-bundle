@@ -60,6 +60,44 @@ Add a where section to `names.json`.
 
 In your application you can pull in the `users` code with `require("users")`. It will resolve to a module with a combination of js, views, templates.
 
+## Gulp
+
+The simplest way to use this in Gulp is with the browserify like call.
+
+```
+var gulpBundler = require('essential-bundle').gulp;
+gulpBundler({
+	outputName: 'body.js',
+	entries: ['./client/code/site/body.js'], // must start with dot to be relative to cwd
+	debug: true // source maps
+	})
+    .pipe(gulp.dest(destDir));
+```
+
+## Browserify
+
+```
+browserify({
+  transforms: ['essential-bundle/browserify-transform']
+});
+```
+
+```
+var essentialTransform = require('essential-bundle').browserifyTransform({
+	sources: ['app','common']
+});
+browserify({
+  transforms: [essentialTransform]
+});
+```
+
+## Grunt Browserify
+
+TODO
+
+## Socketstream
+
+TODO
 
 # Notes
 
